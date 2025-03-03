@@ -81,6 +81,11 @@ class Trie:
         return self.DFS_recursive(self.head, word, 0, 0, hamming_dist)
 
 
+def revcomp(seq):
+    rc = {'A':'T', 'G':'C', 'C':'G', 'T':'A'}
+    return ''.join([rc[seq[i]] for i in range(len(seq)-1, -1, -1)])
+
+
 def id2kmer(kmerid, k):
     kmer = ''
     nts = ['A', 'C', 'G', 'T']
@@ -98,7 +103,9 @@ def read_mirna_file(filename, species_ids):
     for line in fp:
         f = line.strip().split()
         if int(f[2]) in species_ids:
-            mirna_seeds.add(f[1].replace("U", "T"))
+            #mirna_seeds.add(f[1].replace("U", "T"))
+            seed_rc = revcomp(f[1].replace("U", "T"))
+            mirna_seeds.add(seed_rc)
     fp.close()
 
     sys.stderr.write("%d distinct miR seeds loaded.\n" % len(mirna_seeds)) 
