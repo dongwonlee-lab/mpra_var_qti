@@ -19,6 +19,7 @@ Disigner), and Jupyter Notebooks for MPRAalyze analyses in R.
  * R Packages
      * tidyverse
      * MPRAnalyze
+     * ggplot2
 
 ## MPRA Variant Designer
 
